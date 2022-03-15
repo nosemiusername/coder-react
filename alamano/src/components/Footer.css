@@ -1,0 +1,51 @@
+.footer {
+    background-color: #353535;
+    padding: 20px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    color: white;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+}
+
+.footer--company {
+    margin-left: 10px;
+    width: 20vw;
+}
+
+.footer--blank {
+    width: 50vw;
+}
+
+.footer--list {
+    width: 15vw;
+}
+
+.list {
+    padding-left: 0;
+    list-style: none;
+}
+
+.footer--social {
+    width: 15vw;
+    font-size: 6vw;
+}
+
+.footer--social a {
+    padding: 1vw;
+}
+
+a:hover {
+    color: #F43D53;
+    text-transform: uppercase;
+}
+
+a {
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+}
