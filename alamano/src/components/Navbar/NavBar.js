@@ -1,4 +1,6 @@
 import './NavBar.css';
+import CartWidget from '../CartWidget/CartWidget';
+
 function Navbar() {
     return (
         <nav>
@@ -9,7 +11,7 @@ function Navbar() {
                 </div>
                 <div className="icons">
                     <a href="./dec.html"><i class="fa-regular fa-user"></i></a>
-                    <a href="./dec.html"><i class="fas fa-shopping-cart"></i></a>
+                    <CartWidget />
                 </div>
             </div>
             <ul className="menu">
