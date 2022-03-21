@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Box from '@mui/material/Box';
@@ -14,7 +14,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 const ItemCount = ({ stock, initial }) => {
     const [count, setCount] = useState(initial);
     const [open, setOpen] = useState(false);
-
+    const [enableCartButton, setEnableCartButton] = useState(true);
 
     const handleOpen = () => {
         setOpen(true);
@@ -30,6 +30,10 @@ const ItemCount = ({ stock, initial }) => {
     const handleRemove = () => {
         count > 0 ? setCount(count - 1) : setCount(0);
     }
+
+    useEffect(() => {
+        count === 0 ? setEnableCartButton(false) : setEnableCartButton(true);
+    }, [count])
 
     return (
         <>
@@ -73,7 +77,7 @@ const ItemCount = ({ stock, initial }) => {
 
             </CardActions>
             <CardActions>
-                <Button size="small" sx={{ color: "#F43D53" }} onClick={handleOpen} >Agregar al carro</Button>
+                <Button disabled={!enableCartButton} size="small" sx={{ color: "#F43D53" }} onClick={handleOpen} >Agregar al carro</Button>
             </CardActions>
         </>
     );
