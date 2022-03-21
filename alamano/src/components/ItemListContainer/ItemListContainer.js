@@ -1,15 +1,13 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
+import ItemCount from '../ItemCount/ItemCount';
 
 const ItemListContainer = (greeting) => {
 
-
+    const countSetting = { initial: 1, stock: 10 };
     return (
 
         <Card sx={{ maxWidth: 345 }}>
@@ -27,10 +25,7 @@ const ItemListContainer = (greeting) => {
                     {greeting.description}
                 </Typography>
             </CardContent>
-            <CardActions>
-                <Button size="small" sx={{ color: "#F43D53" }} >Comprar</Button>
-                <Button size="small" sx={{ color: "#F43D53" }}>Ver más</Button>
-            </CardActions>
+            <ItemCount {...countSetting} />
         </Card>
     );
 
