@@ -1,0 +1,74 @@
+.logoWithIcons {
+    display: flex;
+}
+
+.empty {
+    width: 20vw;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    width: 60vw;
+    overflow: hidden;
+    margin: -2% auto -5% 0;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20vw;
+}
+
+.icons a:hover {
+    color: #F43D53;
+}
+
+.icons a {
+    color: #353535;
+    text-decoration: none;
+}
+
+.icons i {
+    font-size: 2.5vw;
+    margin: 0.5vw;
+}
+
+.menu {
+    margin: 10px;
+    padding-left: 0;
+    display: flex;
+    justify-content: center;
+
+}
+
+.menu li {
+    display: inline;
+    margin: 5px;
+}
+
+.menuLi>a {
+    color: #333;
+    text-decoration: none;
+    display: inline-block;
+    font-size: smaller;
+    position: relative;
+}
+
+.menuLi>a::after {
+    content: '';
+    display: block;
+    margin: auto;
+    height: 3px;
+    width: 0;
+    top: 5px;
+    background: transparent;
+    transition: all 0.2s;
+}
+
+.menuLi>a:hover::after,
+.menuLi>a:active::after {
+    width: 100%;
+    background: #F43D53;
+}
