@@ -2,7 +2,7 @@
     background-color: #353535;
     padding: 20px;
     width: 100%;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     color: white;
 }

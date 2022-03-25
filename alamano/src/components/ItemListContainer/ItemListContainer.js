@@ -1,33 +1,23 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import ItemCount from '../ItemCount/ItemCount';
+import ItemList from '../ItemList/ItemList.js'
+import React, { useState, useEffect } from 'react';
+import loadProduct from '../../services/products_service';
 
-const ItemListContainer = (greeting) => {
+const ItemListContainer = () => {
+    const [products, setProducts] = useState([]);
 
-    const countSetting = { initial: 1, stock: 10 };
+    useEffect(() => {
+        async function fetchData() {
+            const products = await loadProduct(1000);
+            setProducts(products);
+            console.log(products);
+
+        }
+        fetchData();
+    }, []);
+
     return (
-
-        <Card sx={{ maxWidth: 345 }}>
-            <CardMedia
-                component="img"
-                height="140"
-                image={greeting.src}
-                alt="Cuadro"
-            />
-            <CardContent>
-                <Typography sx={{ color: '#353535' }} gutterBottom variant="h5" component="div">
-                    {greeting.title}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="text.secondary">
-                    {greeting.description}
-                </Typography>
-            </CardContent>
-            <ItemCount {...countSetting} />
-        </Card>
-    );
+        <ItemList products={products} />
+    )
 
 }
 
