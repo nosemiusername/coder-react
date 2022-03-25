@@ -1,17 +1,6 @@
 import Item from '../Item/Item';
-import React, { useState, useEffect } from 'react';
-import loadProduct from '../../services/products_service';
 import Grid from '@mui/material/Grid';
-const ItemList = () => {
-    const [products, setProducts] = useState([]);
-
-    useEffect(() => {
-        async function fetchData() {
-            const products = await loadProduct(1000);
-            setProducts(products);
-        }
-        fetchData();
-    }, []);
+const ItemList = ({ products }) => {
 
     return (
         <Grid container>
