@@ -2,13 +2,13 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
-import { Button } from '@mui/material';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ItemCount from '../ItemCount/ItemCount'
+import truncate from '../../helpers/index';
 
 const Item = ({ product }) => {
 
+    const countSetting = { initial: 1, stock: product.stock };
     return (
 
         <Card sx={{ maxWidth: 345 }}>
@@ -22,13 +22,14 @@ const Item = ({ product }) => {
                 <Typography sx={{ color: '#353535' }} gutterBottom variant="h5" component="div">
                     {product.title}
                 </Typography>
+                <Typography variant="body2" color="textSecondary" component="text.secondary">
+                    {truncate(product.description, 85)}
+                </Typography>
                 <Typography style={{ fontWeight: 600 }}>
                     ${product.price}
                 </Typography>
             </CardContent>
-            <CardActions>
-                <Button size="small" sx={{ color: "#F43D53" }}> <ShoppingCartIcon></ShoppingCartIcon> Agregar al carro</Button>
-            </CardActions>
+            <ItemCount {...countSetting} />
         </Card>
     );
 }
