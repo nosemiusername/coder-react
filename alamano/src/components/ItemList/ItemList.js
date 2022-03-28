@@ -3,8 +3,16 @@ import Grid from '@mui/material/Grid';
 const ItemList = ({ products }) => {
 
     return (
-        <Grid container>
-            {products.map(product => <Item key={product.id} product={product} />)}
+        <Grid
+            container
+            direction="row"
+            justifyContent="space-evenly"
+            alignItems="center">
+
+            {products.map(product =>
+                <Grid item xs={4}>
+                    <Item key={product.id} product={product} />
+                </Grid>)}
         </Grid>
     )
 

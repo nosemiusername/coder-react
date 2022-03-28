@@ -1,6 +1,6 @@
 import ItemList from '../ItemList/ItemList.js'
 import React, { useState, useEffect } from 'react';
-import loadProduct from '../../services/products_service';
+import { loadProduct } from '../../services/products_service';
 
 const ItemListContainer = () => {
     const [products, setProducts] = useState([]);
@@ -10,7 +10,6 @@ const ItemListContainer = () => {
             const products = await loadProduct(1000);
             setProducts(products);
             console.log(products);
-
         }
         fetchData();
     }, []);
