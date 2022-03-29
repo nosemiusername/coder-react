@@ -10,7 +10,7 @@ const ItemList = ({ products }) => {
             alignItems="center">
 
             {products.map(product =>
-                <Grid item xs={4}>
+                <Grid item xs={6} sm={4} >
                     <Item key={product.id} product={product} />
                 </Grid>)}
         </Grid>

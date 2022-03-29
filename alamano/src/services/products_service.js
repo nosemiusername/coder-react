@@ -4,24 +4,19 @@ const productItems = [
         title: "Ventana gris",
         price: 100000,
         pictureUrl: "./images/IMG_6555.jpg",
-        delivery: 3,
         category: "Ventanas",
     },
     {
         id: 2,
         title: "Ventana azul",
-        author: "Loreto Oryan",
         price: 80000,
         pictureUrl: "./images/IMG_6556.jpg",
-        delivery: 3,
         category: "Ventanas",
     },
     {
         id: 3,
         title: "Ventana & luces",
-        author: "Loreto Oryan",
         price: 110000,
-        delivery: 3,
         pictureUrl: "./images/IMG_6557.jpg",
         category: "Ventanas",
     },
@@ -30,7 +25,10 @@ const productItems = [
 const productDetails = [
     {
         id: 1,
+        title: "Ventana gris",
         description: "Tres fotos de contruccion, con marco de ventana reciclada, tratada con 3 capas de pintura, donde prima la gris",
+        price: 100000,
+        pictureUrl: "./images/IMG_6555.jpg",
         size: "1.5x1.5",
         color: "Gris y café",
         material: "Madera",
@@ -41,6 +39,9 @@ const productDetails = [
     {
         id: 2,
         description: "Fotos de contruccion, con marco de ventana reciclada, tratada con 2 capas de pintura, donde prima la azul",
+        title: "Ventana azul",
+        price: 80000,
+        pictureUrl: "./images/IMG_6556.jpg",
         size: "1.5x1.5",
         color: "Azul",
         material: "Madera",
@@ -50,6 +51,9 @@ const productDetails = [
     },
     {
         id: 3,
+        title: "Ventana & luces",
+        price: 110000,
+        pictureUrl: "./images/IMG_6557.jpg",
         description: "Marco de ventana reciclada, con dos capas, y colgante con candelabros",
         size: "1.5x1.5",
         color: "Verde agua y café",
@@ -73,10 +77,10 @@ const loadProduct = (delay) => {
     });
 }
 
-const loadDetails = (delay, id) => {
+const loadDetails = (delay, product) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve(findProductDetails(id));
+            resolve(findProductDetails(parseInt(product.id)));
         }, delay);
     });
 }
