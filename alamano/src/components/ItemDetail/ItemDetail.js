@@ -7,7 +7,6 @@ import ItemCount from '../ItemCount/ItemCount'
 import { Grid } from '@mui/material';
 
 const ItemDetail = ({ detail }) => {
-    // console.log(`stock ${detail.stock}`);
     const countSetting = { initial: 1, stock: detail.stock };
     return (
 
@@ -26,10 +25,10 @@ const ItemDetail = ({ detail }) => {
                         <Typography sx={{ color: '#353535' }} gutterBottom variant="h5" component="div">
                             {detail.title}
                         </Typography>
-                        <Typography variant="body2" color="textSecondary" component="text.secondary">
+                        <Typography variant="body2" color="textSecondary" component="div">
                             Despacho en {detail.deliveryTime} días
                         </Typography>
-                        <Typography variant="body2" color="textSecondary" component="text.secondary">
+                        <Typography variant="body2" color="textSecondary" component="div">
                             {detail.description}
                         </Typography>
                         <Typography style={{ fontWeight: 600 }}>

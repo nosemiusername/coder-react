@@ -15,8 +15,8 @@ function Footer() {
                 </ul>
             </div>
             <div className="footer--social">
-                <a href="1.html"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="1.html"><i class="fa-brands fa-instagram"></i></a>
+                <a href="1.html"><i className="fa-brands fa-facebook-f"></i></a>
+                <a href="1.html"><i className="fa-brands fa-instagram"></i></a>
             </div>
         </footer >
     )

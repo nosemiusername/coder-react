@@ -1,7 +1,6 @@
 import Item from '../Item/Item';
 import Grid from '@mui/material/Grid';
 const ItemList = ({ products }) => {
-
     return (
         <Grid
             container
@@ -10,7 +9,7 @@ const ItemList = ({ products }) => {
             alignItems="center">
 
             {products.map(product =>
-                <Grid item xs={6} sm={4} >
+                <Grid item key={product.id} xs={6} sm={4} >
                     <Item key={product.id} product={product} />
                 </Grid>)}
         </Grid>
