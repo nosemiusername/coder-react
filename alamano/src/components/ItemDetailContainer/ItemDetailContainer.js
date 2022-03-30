@@ -7,11 +7,11 @@ const ItemDetailContainer = () => {
     const { id } = useParams();
     const [detail, setDetail] = useState({});
     useEffect(() => {
-        async function fetchData() {
+        (async () => {
             const detail = await loadDetails(1000, { id });
             setDetail(detail);
         }
-        fetchData();
+        )();
     }, [id]);
 
     return (

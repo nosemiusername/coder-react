@@ -7,11 +7,10 @@ import { useState, useEffect } from 'react';
 function Navbar() {
     const [categories, setCategories] = useState([]);
     useEffect(() => {
-        async function fetchData() {
+        (async () => {
             const categories = await loadCategories();
             setCategories(categories);
-        }
-        fetchData();
+        })();
     }, []);
 
     return (
