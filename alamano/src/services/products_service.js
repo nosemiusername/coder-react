@@ -5,11 +5,11 @@ const categories = [
     },
     {
         id: 2,
-        name: 'Telares',
+        name: 'Bordados',
     },
     {
         id: 3,
-        name: 'Muebles',
+        name: 'Cerámica',
     },
     {
         id: 4,
@@ -17,7 +17,7 @@ const categories = [
     },
     {
         id: 5,
-        name: 'Cerámica',
+        name: 'Muebles',
     },
 
 ];
