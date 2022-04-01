@@ -10,12 +10,16 @@ const ItemDetailContainer = () => {
         (async () => {
             const detail = await loadDetails(1000, { id });
             setDetail(detail);
+            console.log(detail);
         }
         )();
     }, [id]);
 
     return (
-        <ItemDetail key={detail.id} detail={detail} />
+        <>
+            {detail.id ? <ItemDetail detail={detail} /> : <div>Cargando...</div>}
+        </>
+
     )
 }
 
