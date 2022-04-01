@@ -75,7 +75,8 @@
     transform-origin: bottom center;
 }
 
-.menuLiActive {
+.active {
     border-bottom: 2px solid #F43D53;
     line-height: 0.85;
+
 }

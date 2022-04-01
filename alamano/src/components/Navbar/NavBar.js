@@ -32,7 +32,7 @@ const Navbar = () => {
                 {categories.map(category =>
                     <li className="menuLi" key={category.id}>
                         <NavLink to={`/category/${category.id}`}
-                            activeClassName="menuLiActive"
+                            activeClassName="active"
                         >
 
                             {category.name}</NavLink>
