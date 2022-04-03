@@ -5,8 +5,9 @@ const ItemList = ({ products }) => {
         <Grid
             container
             direction="row"
-            justifyContent="space-evenly"
-            alignItems="center">
+            justifyContent="space-around"
+            alignItems="center"
+            spacing={6}>
 
             {products.map(product =>
                 <Grid item key={product.id} xs={6} sm={4} >
