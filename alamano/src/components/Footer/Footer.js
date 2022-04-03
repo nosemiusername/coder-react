@@ -1,4 +1,6 @@
 import './Footer.css'
+import { Link } from 'react-router-dom';
+
 
 function Footer() {
     return (
@@ -9,9 +11,9 @@ function Footer() {
             <div className="footer--blank"></div>
             <div className="footer--list">
                 <ul className="list">
-                    <li className="list--item"><a href="1.html">Historia</a></li>
-                    <li className="list--item"><a href="1.html">Sumate</a></li>
-                    <li className="list--item"><a href="1.html">Contactanos</a></li>
+                    <li className="list--item"><Link to={"/historia"}>Historia</Link></li>
+                    <li className="list--item"><Link to={"/unete"}>Sumate</Link></li>
+                    <li className="list--item"><Link to={"/contactanos"}>Contactanos</Link></li>
                 </ul>
             </div>
             <div className="footer--social">

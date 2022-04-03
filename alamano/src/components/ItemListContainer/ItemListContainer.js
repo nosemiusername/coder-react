@@ -7,11 +7,10 @@ const ItemListContainer = () => {
     const [products, setProducts] = useState([]);
     const { category } = useParams();
     useEffect(() => {
-        async function fetchData() {
+        (async () => {
             const products = await loadProduct(1000, category ? category : 1);
             setProducts(products);
-        }
-        fetchData();
+        })()
     }, [category]);
 
     return (

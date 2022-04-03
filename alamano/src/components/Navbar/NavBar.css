@@ -11,7 +11,7 @@
     justify-content: center;
     width: 60vw;
     overflow: hidden;
-    margin: -2% auto -5% 0;
+    margin: -3% auto -5% 0;
 }
 
 .icons {
@@ -58,17 +58,25 @@
 
 .menuLi>a::after {
     content: '';
-    display: block;
-    margin: auto;
-    height: 3px;
-    width: 0;
-    top: 5px;
-    background: transparent;
-    transition: all 0.2s;
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #F43D53;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
 }
 
 .menuLi>a:hover::after,
 .menuLi>a:active::after {
-    width: 100%;
-    background: #F43D53;
+    transform: scaleX(1);
+    transform-origin: bottom center;
+}
+
+.active {
+    border-bottom: 2px solid #F43D53;
+    line-height: 0.85;
+
 }

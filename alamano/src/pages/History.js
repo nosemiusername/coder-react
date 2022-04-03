@@ -1,11 +1,11 @@
 import Container from "@mui/material/Container";
 
-function NotFound() {
+function History() {
     return (
         <Container>
-            <h1>Página no encontrada</h1>
+            <h1>Historia</h1>
         </Container>
     )
 }
 
-export default NotFound;
+export default History;
