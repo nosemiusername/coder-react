@@ -3,7 +3,7 @@ import Container from "@mui/material/Container";
 function NotFound() {
     return (
         <Container>
-            <h1>Not Found</h1>
+            <h1>Página no encontrada</h1>
         </Container>
     )
 }

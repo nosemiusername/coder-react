@@ -19,11 +19,10 @@ function App() {
           <Route path="/" element={<ItemListContainer />} />
           <Route path="/category/:category" element={<ItemListContainer />} />
           <Route path="/item/:id" element={<ItemDetailContainer />} />
-          <Route path="/*" element={<NotFound />} />
-          <Route path="/*" element={<NotFound />} />
           <Route path="/contactanos" element={<ContactUs />} />
           <Route path="/historia" element={<History />} />
           <Route path="/unete" element={<JoinUs />} />
+          <Route path="/*" element={<NotFound />} />
           {/* <Route path="/cart" element={<CartWidget />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/login" element={<Login />} />
