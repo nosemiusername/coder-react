@@ -5,16 +5,70 @@ import Typography from '@mui/material/Typography';
 import ItemCount from '../ItemCount/ItemCount'
 import { Grid } from '@mui/material';
 import './ItemDetail.css';
-const ItemDetail = ({ detail }) => {
-    const countSetting = { initial: 1, stock: detail.stock };
-    return (
+import { useState, useEffect } from 'react';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
 
+const ItemDetail = ({ detail }) => {
+    const stock = detail.stock;
+    const [count, setCount] = useState(1);
+    const [open, setOpen] = useState(false);
+    const [showItemCount, setShowItemCount] = useState(true);
+
+    const handleOpen = () => {
+        setOpen(true);
+    }
+
+    const handleClose = () => {
+        setOpen(false);
+        setShowItemCount(false);
+    }
+
+    const handleAdd = () => {
+        count < stock ? setCount(count + 1) : setCount(stock);
+    }
+
+    const handleRemove = () => {
+        count > 0 ? setCount(count - 1) : setCount(0);
+    }
+
+    const showItemCountSnippet = () => {
+        if (showItemCount) {
+            return <ItemCount count={count} handleAdd={handleAdd} handleRemove={handleRemove} handleOpen={handleOpen} />
+        }
+    }
+
+    useEffect(() => {
+
+    }, [setOpen])
+
+    return (
 
         <Grid
             container
             justifyContent="space-around"
             spacing={6}
         >
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">{"Agregando al Carro"}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        ¿Desea agregar {count} unidades de este producto al carro?
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose} sx={{ color: "#F43D53" }}>Ok</Button>
+                </DialogActions>
+            </Dialog>
             <Grid item xs={6}>
                 <img className="grid-img" src={detail.pictureUrl} alt={detail.name} />
             </Grid>
@@ -34,7 +88,7 @@ const ItemDetail = ({ detail }) => {
                             ${detail.price}
                         </Typography>
                     </CardContent>
-                    <ItemCount {...countSetting} />
+                    {showItemCountSnippet()}
                     <CardContent>
                         <Typography sx={{ color: '#353535' }} gutterBottom variant="h6" component="div">
                             Detalles
@@ -58,6 +112,7 @@ const ItemDetail = ({ detail }) => {
                 </Card>
             </Grid>
         </Grid>
+
     );
 }
 
