@@ -7,8 +7,15 @@ import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Item = ({ product }) => {
+    const navigate = useNavigate();
+
+    const handleClick = (event) => {
+        event.preventDefault();
+        navigate(`/cart`);
+    }
 
     return (
 
@@ -30,7 +37,7 @@ const Item = ({ product }) => {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small" sx={{ color: "#F43D53" }}> <ShoppingCartIcon></ShoppingCartIcon> Agregar al carro</Button>
+                <Button onClick={handleClick} size="small" sx={{ color: "#F43D53" }}> <ShoppingCartIcon></ShoppingCartIcon> Agregar al carro</Button>
             </CardActions>
         </Card>
     );
