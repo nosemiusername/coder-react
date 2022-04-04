@@ -8,6 +8,7 @@ import NotFound from './pages/NotFound';
 import ContactUs from './pages/ContactUs';
 import History from './pages/History'
 import JoinUs from './pages/JoinUs'
+import Cart from './pages/Cart';
 
 function App() {
 
@@ -23,8 +24,8 @@ function App() {
           <Route path="/historia" element={<History />} />
           <Route path="/unete" element={<JoinUs />} />
           <Route path="/*" element={<NotFound />} />
-          {/* <Route path="/cart" element={<CartWidget />} />
-          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/cart" element={<Cart />} />
+          {/* <Route path="/checkout" element={<Checkout />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} /> */}
