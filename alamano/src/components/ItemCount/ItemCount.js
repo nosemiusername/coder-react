@@ -6,9 +6,17 @@ import TextField from '@mui/material/TextField';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 
-const ItemCount = ({ count, handleAdd, handleRemove, handleOpen }) => {
+const ItemCount = ({ stock, handleOpen }) => {
     const [enableCartButton, setEnableCartButton] = useState(true);
+    const [count, setCount] = useState(1);
 
+    const handleAdd = () => {
+        count < stock ? setCount(count + 1) : setCount(stock);
+    }
+
+    const handleRemove = () => {
+        count > 0 ? setCount(count - 1) : setCount(0);
+    }
     useEffect(() => {
         count === 0 ? setEnableCartButton(false) : setEnableCartButton(true);
     }, [count])
@@ -37,7 +45,7 @@ const ItemCount = ({ count, handleAdd, handleRemove, handleOpen }) => {
 
             </CardActions>
             <CardActions>
-                <Button disabled={!enableCartButton} size="small" sx={{ color: "#F43D53" }} onClick={handleOpen} >Agregar al carro</Button>
+                <Button disabled={!enableCartButton} size="small" sx={{ color: "#F43D53" }} onClick={(e) => handleOpen(e, count)} >Agregar al carro</Button>
             </CardActions>
         </>
     );
