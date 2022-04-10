@@ -5,15 +5,17 @@ import Typography from '@mui/material/Typography';
 import ItemCount from '../ItemCount/ItemCount'
 import { Grid } from '@mui/material';
 import './ItemDetail.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
+import CartContext from '../../context/CartContext';
 
 const ItemDetail = ({ detail }) => {
+    const { addItem, cart } = useContext(CartContext);
     const [open, setOpen] = useState(false);
     const [showItemCount, setShowItemCount] = useState(true);
     const [count, setCount] = useState(1);
@@ -22,11 +24,15 @@ const ItemDetail = ({ detail }) => {
         e.stopPropagation();
         setOpen(true);
         setCount(count);
+        addItem({ ...detail, quantity: count });
+
     }
 
     const handleClose = () => {
         setOpen(false);
         setShowItemCount(false);
+        console.log(cart);
+
     }
 
     const showItemCountSnippet = () => {
