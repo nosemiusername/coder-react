@@ -10,8 +10,7 @@ const CartProvider = ({ children }) => {
 
     const addItem = (item) => {
         isInCart(item) ? updateItem(item) : setCart(cart => [...cart, item]);
-        setCartLenght(cart.reduce((acc, item) => acc + item.quantity, 0));
-        console.log(cart);
+        setCartLenght(lenght => lenght + item.quantity);
     }
 
     const updateItem = (item) => {

@@ -15,7 +15,7 @@ import Button from '@mui/material/Button';
 import CartContext from '../../context/CartContext';
 
 const ItemDetail = ({ detail }) => {
-    const { addItem, cart } = useContext(CartContext);
+    const { addItem } = useContext(CartContext);
     const [open, setOpen] = useState(false);
     const [showItemCount, setShowItemCount] = useState(true);
     const [count, setCount] = useState(1);
@@ -24,14 +24,12 @@ const ItemDetail = ({ detail }) => {
         e.stopPropagation();
         setOpen(true);
         setCount(count);
-        addItem({ ...detail, quantity: count });
-
     }
 
     const handleClose = () => {
+        addItem({ ...detail, quantity: count });
         setOpen(false);
         setShowItemCount(false);
-        console.log(cart);
 
     }
 

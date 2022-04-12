@@ -1,13 +1,12 @@
 import './CartWidget.css';
 import { Link } from 'react-router-dom';
 import CartContext from '../../context/CartContext';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 const CartWidget = () => {
     const { cartLenght } = useContext(CartContext);
 
     useEffect(() => {
-        console.log(cartLenght);
     }, [cartLenght]);
 
     return (
