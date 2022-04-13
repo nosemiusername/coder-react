@@ -1,3 +1,5 @@
+import { collection, getDocs } from 'firebase/firestore';
+import db from '../firebase';
 const categories = [
     {
         id: 1,
@@ -331,4 +333,20 @@ const loadDetails = (delay, product) => {
         }, delay);
     });
 }
-export { loadProduct, loadDetails, loadCategories };
+
+const getProducts = async () => {
+    const itemCollection = collection(db, 'productos');
+    const productosSnapshot = await getDocs(itemCollection);
+    const productos = productosSnapshot.docs.map(doc => {
+        return {
+            id: doc.id,
+            ...doc.data()
+        }
+    });
+    return productos;
+}
+
+
+
+
+export { loadProduct, loadDetails, loadCategories, getProducts };

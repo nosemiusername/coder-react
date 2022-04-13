@@ -28,6 +28,8 @@ const CartProvider = ({ children }) => {
 
     const removeItem = (item) => {
         setCart(cart.filter((i) => i.id !== item.id));
+        setCartLenght(lenght => lenght - item.quantity);
+
     }
 
     const clear = () => {

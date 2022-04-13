@@ -13,8 +13,11 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import CartContext from '../../context/CartContext';
+import CardActions from '@mui/material/CardActions';
+import { useNavigate } from 'react-router-dom';
 
 const ItemDetail = ({ detail }) => {
+    const navigate = useNavigate();
     const { addItem } = useContext(CartContext);
     const [open, setOpen] = useState(false);
     const [showItemCount, setShowItemCount] = useState(true);
@@ -33,10 +36,20 @@ const ItemDetail = ({ detail }) => {
 
     }
 
+    const goToCart = () => {
+        navigate('/cart');
+    }
+
     const showItemCountSnippet = () => {
-        if (showItemCount) {
-            return <ItemCount stock={detail.stock} handleOpen={handleOpen} />
-        }
+        return (
+            (showItemCount) ? (
+                <ItemCount stock={detail.stock} handleOpen={handleOpen} />
+            ) : (
+                <CardActions>
+                    <Button size="small" sx={{ color: "#F43D53" }} onClick={() => goToCart()}>Terminar Compra</Button>
+                </CardActions>
+            )
+        )
     }
 
     useEffect(() => {
