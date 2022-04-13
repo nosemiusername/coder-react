@@ -1,11 +1,9 @@
 import Container from "@mui/material/Container";
 import { InputLabel, FormHelperText, Input, Button } from "@mui/material";
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 function ContactUs() {
 
-    const navigate = useNavigate();
     const [value, setValue] = useState({
         given: '',
         lastname: '',

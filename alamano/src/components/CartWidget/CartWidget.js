@@ -5,17 +5,25 @@ import { useContext, useEffect } from 'react';
 
 const CartWidget = () => {
     const { cartLenght } = useContext(CartContext);
+    const showIcon = () => {
+        return (
+            <>
+                <Link to="/cart">
+                    <i className="fas fa-shopping-cart"></i>
+                </Link>
+                <span>{cartLenght}</span>
+            </>
+        )
+    }
 
     useEffect(() => {
-        console.log(cartLenght);
     }, [cartLenght]);
 
     return (
         <>
-            <Link to="/cart">
-                <i className="fas fa-shopping-cart"></i>
-            </Link>
-            <span>{cartLenght}</span>
+            {
+                !!cartLenght && showIcon()
+            }
         </>
     )
 
