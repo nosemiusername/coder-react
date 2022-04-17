@@ -1,7 +1,7 @@
 import './NavBar.css';
 import { NavLink } from 'react-router-dom';
 import CartWidget from '../CartWidget/CartWidget';
-import { loadCategories } from '../../services/products_service';
+import { getCategories } from '../../services/products_service';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -9,7 +9,7 @@ const Navbar = () => {
     const [categories, setCategories] = useState([]);
     useEffect(() => {
         (async () => {
-            const categories = await loadCategories();
+            const categories = await getCategories();
             setCategories(categories);
         })();
     }, []);
@@ -31,7 +31,7 @@ const Navbar = () => {
             <ul className="menu">
                 {categories.map(category =>
                     <li className="menuLi" key={category.id}>
-                        <NavLink to={`/category/${category.id}`}
+                        <NavLink to={`/category/${category.name}`}
                             activeClassName="active"
                         >
 

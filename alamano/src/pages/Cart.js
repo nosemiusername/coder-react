@@ -11,6 +11,7 @@ import CartContext from '../context/CartContext';
 import { useContext } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
 import './Cart.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -49,9 +50,10 @@ function Cart() {
                                         <TableCell align="center">{item.quantity}</TableCell>
                                         <TableCell align="center">${calculateTotalItem(item)}</TableCell>
                                         <TableCell align="center">
-                                            <Button>
-                                                <DeleteIcon onClick={() => removeItem(item)}>Eliminar</DeleteIcon>
-                                            </Button>
+                                            <IconButton aria-label="delete" onClick={() => removeItem(item)}>
+                                                <DeleteIcon >Eliminar</DeleteIcon>
+                                            </IconButton>
+
                                         </TableCell>
                                     </TableRow>))}
                             </TableBody>
