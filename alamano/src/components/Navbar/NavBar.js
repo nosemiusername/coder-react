@@ -4,9 +4,14 @@ import CartWidget from '../CartWidget/CartWidget';
 import { getCategories } from '../../services/products_service';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { signInWithGoogle } from './../../services/firebase';
 
 const Navbar = () => {
     const [categories, setCategories] = useState([]);
+    const longinHandler = async (e) => {
+        await signInWithGoogle();
+    }
+
     useEffect(() => {
         (async () => {
             const categories = await getCategories();
@@ -24,7 +29,7 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div className="icons">
-                    <a href="/dec.html"><i className="fa-regular fa-user"></i></a>
+                    <Link to={"/"} onClick={longinHandler} ><i className="fa-regular fa-user"></i></Link>
                     <CartWidget />
                 </div>
             </div>
@@ -39,7 +44,7 @@ const Navbar = () => {
                     </li>
                 )}
             </ul>
-        </nav>
+        </nav >
     );
 }
 

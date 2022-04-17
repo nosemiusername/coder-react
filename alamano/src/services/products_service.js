@@ -1,5 +1,5 @@
 import { query, where, collection, getDocs, doc, getDoc } from 'firebase/firestore';
-import db from '../firebase';
+import { db } from './firebase';
 
 /**
  * If category is undefined get first category

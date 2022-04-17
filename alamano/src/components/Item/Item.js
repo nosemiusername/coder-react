@@ -8,12 +8,16 @@ import { Button } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import CartContext from '../../context/CartContext';
 
 const Item = ({ product }) => {
     const navigate = useNavigate();
+    const { addItem } = useContext(CartContext);
 
     const handleClick = (event) => {
         event.preventDefault();
+        addItem({ ...product, quantity: 1 });
         navigate(`/cart`);
     }
 
