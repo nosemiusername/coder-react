@@ -11,14 +11,12 @@ function ContactUs() {
     });
 
     const resetForm = (e) => {
-        console.log('reset form');
         setValue({ given: '', lastname: '', email: '' });
     }
 
 
     const handleChange = (e) => {
         e.preventDefault();
-        console.log('change');
         e.target.id === "given" ? setValue({ ...value, given: e.target.value }) : setValue({ ...value, lastname: e.target.value });
 
     }
@@ -26,8 +24,7 @@ function ContactUs() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('submit');
-        console.log(value);
+
     }
 
 

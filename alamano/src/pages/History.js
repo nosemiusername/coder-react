@@ -1,6 +1,7 @@
 import Container from "@mui/material/Container";
 
 function History() {
+
     return (
         <Container>
             <h1>Historia</h1>

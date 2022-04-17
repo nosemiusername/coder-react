@@ -50,8 +50,8 @@ function Cart() {
                                         <TableCell align="center">{item.quantity}</TableCell>
                                         <TableCell align="center">${calculateTotalItem(item)}</TableCell>
                                         <TableCell align="center">
-                                            <IconButton aria-label="delete">
-                                                <DeleteIcon onClick={() => removeItem(item)}>Eliminar</DeleteIcon>
+                                            <IconButton aria-label="delete" onClick={() => removeItem(item)}>
+                                                <DeleteIcon >Eliminar</DeleteIcon>
                                             </IconButton>
 
                                         </TableCell>
