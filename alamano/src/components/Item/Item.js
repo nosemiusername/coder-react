@@ -8,18 +8,28 @@ import { Button } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import CartContext from '../../context/CartContext';
 
-const Item = ({ product }) => {
-    const navigate = useNavigate();
-    const { addItem } = useContext(CartContext);
 
-    const handleClick = (event) => {
+const Item = ({ product }) => {
+    const [disableCart, setDisableCart] = useState(false);
+    const { addItem, remainingItems, cart } = useContext(CartContext);
+
+    const handleClick = async (event) => {
         event.preventDefault();
         addItem({ ...product, quantity: 1 });
-        navigate(`/cart`);
+
     }
+
+    useEffect(async () => {
+
+        async function 
+        const result = await remainingItems(product.id);
+        if (result === 0) {
+            setDisableCart(true);
+        }
+    }, [cart])
 
     return (
 
@@ -41,9 +51,9 @@ const Item = ({ product }) => {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button onClick={handleClick} size="small" sx={{ color: "#F43D53" }}> <ShoppingCartIcon></ShoppingCartIcon> Agregar al carro</Button>
+                <Button disabled={disableCart} onClick={handleClick} size="small" sx={{ color: "#F43D53" }}> <ShoppingCartIcon></ShoppingCartIcon>Agregar al carrito</Button>
             </CardActions>
-        </Card>
+        </Card >
     );
 }
 
