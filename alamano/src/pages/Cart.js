@@ -14,6 +14,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import './Cart.css';
 import { useNavigate } from 'react-router-dom';
+import { currencyFormat } from '../helpers/index';
 
 function Cart() {
     const navigate = useNavigate()
@@ -25,6 +26,13 @@ function Cart() {
         navigate('/');
     }
 
+    const goToCheckout = () => {
+        navigate('/checkout');
+    }
+
+    const calculateTotalCart = () => {
+        return cart.reduce((acc, item) => acc + calculateTotalItem(item), 0)
+    }
     return (
 
         <Container >
@@ -46,9 +54,9 @@ function Cart() {
                                 {cart.map((item) => (
                                     <TableRow key={item.id}>
                                         <TableCell component="th" scope="row">{item.title}</TableCell>
-                                        <TableCell align="center">${item.price}</TableCell>
+                                        <TableCell align="center">{currencyFormat(item.price)}</TableCell>
                                         <TableCell align="center">{item.quantity}</TableCell>
-                                        <TableCell align="center">${calculateTotalItem(item)}</TableCell>
+                                        <TableCell align="center">{currencyFormat(calculateTotalItem(item))}</TableCell>
                                         <TableCell align="center">
                                             <IconButton aria-label="delete" onClick={() => removeItem(item)}>
                                                 <DeleteIcon >Eliminar</DeleteIcon>
@@ -59,6 +67,13 @@ function Cart() {
                             </TableBody>
                         </Table>
                     </TableContainer>
+                    <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '1rem' }}>
+                        Subtotal: {currencyFormat(calculateTotalCart())}
+                    </Box>
+                    <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '1rem' }}>
+                        <Button variant="contained" onClick={goToCheckout}>Ir a Pagar</Button>
+                    </Box>
+
                 </>
             ) :
                 (

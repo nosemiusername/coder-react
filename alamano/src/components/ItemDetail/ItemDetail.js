@@ -15,6 +15,7 @@ import Button from '@mui/material/Button';
 import CartContext from '../../context/CartContext';
 import CardActions from '@mui/material/CardActions';
 import { useNavigate } from 'react-router-dom';
+import { currencyFormat } from '../../helpers/index';
 
 const ItemDetail = ({ detail }) => {
     const navigate = useNavigate();
@@ -102,7 +103,7 @@ const ItemDetail = ({ detail }) => {
                             {detail.description}
                         </Typography>
                         <Typography style={{ fontWeight: 800, color: '#F43D53' }}>
-                            ${detail.price}
+                            {currencyFormat(detail.price)}
                         </Typography>
                     </CardContent>
                     {showItemCountSnippet()}

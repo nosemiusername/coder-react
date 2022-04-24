@@ -9,6 +9,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import CartContext from '../../context/CartContext';
+import { currencyFormat } from '../../helpers/index';
 
 
 const Item = ({ product }) => {
@@ -48,7 +49,7 @@ const Item = ({ product }) => {
                     {product.title}
                 </Typography>
                 <Typography style={{ fontWeight: 600 }}>
-                    ${product.price}
+                    {currencyFormat(product.price)}
                 </Typography>
             </CardContent>
             <CardActions>

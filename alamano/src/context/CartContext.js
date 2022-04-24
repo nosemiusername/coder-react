@@ -12,6 +12,7 @@ const CartProvider = ({ children }) => {
     const addItem = (item) => {
         isInCart(item) ? updateItem(item) : setCart(cart => [...cart, item]);
         setCartLenght(lenght => lenght + item.quantity);
+        localStorage.setItem('cart', JSON.stringify([...cart, item]));
     }
 
     const updateItem = (item) => {
@@ -42,12 +43,9 @@ const CartProvider = ({ children }) => {
     }
 
     const remainingItems = async (itemId) => {
-        console.log(cart);
-        console.log(isInCart(itemId));
         const cartItem = cart.filter(i => i.id === itemId);
         const availableItem = await getItemById(itemId);
         const result = (typeof cartItem[0] !== 'undefined') ? availableItem.stock - cartItem[0].quantity : availableItem.stock;
-        console.log(`result: ${result}`);
         return result
     }
 

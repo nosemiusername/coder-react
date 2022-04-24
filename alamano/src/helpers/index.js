@@ -1,5 +1,5 @@
-const truncate = (str, n) => {
-    return (str.length > n) ? str.substr(0, n - 1) + '...' : str;
-};
+const currencyFormat = (num) => {
+    return new Intl.NumberFormat('es-CL', { currency: 'CLP', style: 'currency' }).format(num);
+}
 
-export default truncate;
+export { currencyFormat, };
