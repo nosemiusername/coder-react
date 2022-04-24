@@ -22,6 +22,7 @@ const ItemDetail = ({ detail }) => {
     const [open, setOpen] = useState(false);
     const [showItemCount, setShowItemCount] = useState(true);
     const [count, setCount] = useState(1);
+    const { remainingItems } = useContext(CartContext);
 
     const handleOpen = (e, count) => {
         e.stopPropagation();
@@ -53,7 +54,13 @@ const ItemDetail = ({ detail }) => {
     }
 
     useEffect(() => {
-
+        async function evaluateStock() {
+            const result = await remainingItems(detail.id);
+            if (result === 0) {
+                setShowItemCount(false);
+            }
+        }
+        evaluateStock();
     }, [setOpen])
 
     return (
