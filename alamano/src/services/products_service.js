@@ -44,4 +44,5 @@ const getCategories = async () => {
     return categories.docs.length ? categories.docs.map(doc => doc.data()) : [];
 }
 
+
 export { getItemsByCategory, getCategories, getItemById };

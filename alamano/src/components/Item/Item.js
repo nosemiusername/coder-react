@@ -7,7 +7,6 @@ import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import CartContext from '../../context/CartContext';
 
@@ -22,13 +21,15 @@ const Item = ({ product }) => {
 
     }
 
-    useEffect(async () => {
+    useEffect(() => {
 
-        async function 
-        const result = await remainingItems(product.id);
-        if (result === 0) {
-            setDisableCart(true);
+        async function evaluateStock() {
+            const result = await remainingItems(product.id);
+            if (result === 0) {
+                setDisableCart(true);
+            }
         }
+        evaluateStock();
     }, [cart])
 
     return (

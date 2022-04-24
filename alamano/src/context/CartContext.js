@@ -1,5 +1,6 @@
 import { createContext } from 'react';
 import { useState } from 'react';
+import { getItemById } from '../services/products_service';
 
 const CartContext = createContext();
 
@@ -40,6 +41,16 @@ const CartProvider = ({ children }) => {
         return !cart.length ? false : cart.some((i) => i.id === item.id);
     }
 
+    const remainingItems = async (itemId) => {
+        console.log(cart);
+        console.log(isInCart(itemId));
+        const cartItem = cart.filter(i => i.id === itemId);
+        const availableItem = await getItemById(itemId);
+        const result = (typeof cartItem[0] !== 'undefined') ? availableItem.stock - cartItem[0].quantity : availableItem.stock;
+        console.log(`result: ${result}`);
+        return result
+    }
+
     const data = {
         cart,
         addItem,
@@ -47,6 +58,7 @@ const CartProvider = ({ children }) => {
         clear,
         isInCart,
         cartLenght,
+        remainingItems,
     }
 
     return (
