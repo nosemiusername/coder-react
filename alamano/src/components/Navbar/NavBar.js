@@ -3,13 +3,14 @@ import { NavLink } from 'react-router-dom';
 import CartWidget from '../CartWidget/CartWidget';
 import { getCategories } from '../../services/products_service';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { signInWithGoogle } from './../../services/firebase';
 
 const Navbar = () => {
     const [categories, setCategories] = useState([]);
+    const navigate = useNavigate();
     const longinHandler = async (e) => {
-        await signInWithGoogle();
+        navigate('/login');
     }
 
     useEffect(() => {
