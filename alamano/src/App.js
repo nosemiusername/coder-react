@@ -30,7 +30,7 @@ function App() {
             <Route path="/historia" element={<History />} />
             <Route path="/unete" element={<JoinUs />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/checkout/:order" element={<Checkout />} />
             <Route path="/*" element={<NotFound />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

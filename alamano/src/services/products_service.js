@@ -1,4 +1,4 @@
-import { query, where, collection, getDocs, doc, getDoc } from 'firebase/firestore';
+import { query, where, collection, getDocs, doc, getDoc, addDoc, setDoc } from 'firebase/firestore';
 import { db } from './firebase';
 
 /**
@@ -44,5 +44,32 @@ const getCategories = async () => {
     return categories.docs.length ? categories.docs.map(doc => doc.data()) : [];
 }
 
+/**
+ * 
+ * @param {*} order 
+ * @returns order generated 
+ */
+const createOrder = async (cart, contactInfo) => {
+    const order = await addDoc(collection(db, 'orders'), {
+        cart,
+        contactInfo,
+        status: 'pending'
+    });
+    return order.id;
+}
 
-export { getItemsByCategory, getCategories, getItemById };
+const payOrder = async (orderId) => {
+    console.log('payOrder', orderId);
+    const orderRef = doc(db, 'orders', orderId);
+    const order = await getDoc(orderRef);
+    if (order.exists()) {
+        console.log('order', orderRef);
+        await setDoc(orderRef, {
+            ...order.data(),
+            status: 'paid'
+        });
+    }
+    return order.exists();
+}
+
+export { createOrder, getItemsByCategory, getCategories, getItemById, payOrder };

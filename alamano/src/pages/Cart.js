@@ -17,6 +17,8 @@ import { useNavigate } from 'react-router-dom';
 import { currencyFormat } from '../helpers/index';
 import { InputLabel, FormControl, Input, Button, FormHelperText } from "@mui/material";
 import MuiPhoneNumber from 'material-ui-phone-number';
+import { createOrder } from '../services/products_service';
+import Typography from "@mui/material/Typography";
 
 function Cart() {
     const navigate = useNavigate()
@@ -31,7 +33,7 @@ function Cart() {
         city: '',
         state: '',
         postal: '',
-    })
+    });
     const [disableButton, setDisablebutton] = useState(false);
     const [showVerifyEmailError, setShowVerifyEmailError] = useState(false);
     const calculateTotalItem = (item) => {
@@ -42,14 +44,23 @@ function Cart() {
         navigate('/');
     }
 
-    const goToCheckout = () => {
-        navigate('/checkout');
+    const goToCheckout = async (e) => {
+        e.preventDefault();
+        const order = await createOrder(cart, contactInfo);
+        navigate(`/checkout/${order}`);
     }
 
     const handleChange = (e) => {
         setContactInfo({
             ...contactInfo,
             [e.target.name]: e.target.value
+        })
+    }
+
+    const handlePhoneChange = (value) => {
+        setContactInfo({
+            ...contactInfo,
+            phone: value
         })
     }
 
@@ -63,6 +74,7 @@ function Cart() {
             if (contactInfo.email === contactInfo.vemail) {
                 setDisablebutton(false);
                 setShowVerifyEmailError(false);
+
             } else {
                 setDisablebutton(true);
                 setShowVerifyEmailError(true);
@@ -77,8 +89,10 @@ function Cart() {
 
         <Container >
             {cart.length ? (
-                <>
-                    <h1>Carrito de compra</h1>
+                <Container>
+                    <Typography variant="h4" component="h1" gutterBottom>
+                        Checkout
+                    </Typography>
                     <Grid container spacing={3}>
                         <Grid item xs={8}>
                             <TableContainer component={Paper}>
@@ -115,38 +129,41 @@ function Cart() {
                         </Grid>
                         <Grid item xs={4}>
                             <Box>
-                                <h2>RESUMEN</h2>
-                                <p>Por favor indicanos tus datos para continuar con el proceso de pago.</p>
+                                <Typography variant="h5" component="h2" gutterBottom>
+                                    Resumen
+                                </Typography>
+                                <Typography variant="body1" component="p" gutterBottom>
+                                    Por favor indicanos tus datos para continuar con el proceso de pago.</Typography>
                             </Box>
                             <form onSubmit={goToCheckout}>
                                 <FormControl variant="standard">
                                     <InputLabel htmlFor="given">Nombre</InputLabel>
-                                    <Input id="component-simple" onBlur={handleChange} name="given" type="text" />
+                                    <Input id="component-simple" onChange={handleChange} name="given" type="text" />
                                 </FormControl>
                                 <FormControl variant="standard">
                                     <InputLabel htmlFor="lastname">Apellido</InputLabel>
-                                    <Input id="component-simple" onBlur={handleChange} name="lastname" type="text" />
+                                    <Input id="component-simple" onChange={handleChange} name="lastname" type="text" />
                                 </FormControl>
                                 <FormControl variant="standard">
                                     <InputLabel htmlFor="address">Dirección</InputLabel>
-                                    <Input id="component-simple" onBlur={handleChange} name="address" type="text" />
+                                    <Input id="component-simple" onChange={handleChange} name="address" type="text" />
                                 </FormControl>
                                 <FormControl variant="standard">
                                     <InputLabel htmlFor="city">Ciudad</InputLabel>
-                                    <Input id="component-simple" onBlur={handleChange} name="city" type="text" />
+                                    <Input id="component-simple" onChange={handleChange} name="city" type="text" />
                                 </FormControl>
                                 <FormControl variant="standard">
                                     <InputLabel htmlFor="state">Provincia</InputLabel>
-                                    <Input id="component-simple" onBlur={handleChange} name="state" type="text" />
+                                    <Input id="component-simple" onChange={handleChange} name="state" type="text" />
                                 </FormControl>
                                 <FormControl variant="standard">
                                     <InputLabel htmlFor="postal">Código Postal</InputLabel>
-                                    <Input id="component-simple" onBlur={handleChange} name="postal" type="tel" />
+                                    <Input id="component-simple" onChange={handleChange} name="postal" type="tel" />
                                 </FormControl>
-                                <MuiPhoneNumber defaultCountry={'cl'} name="phone" id="component-simple" onBlur={handleChange} />
+                                <MuiPhoneNumber regions={'south-america'} defaultCountry={'cl'} name="phone" id="component-simple" onChange={handlePhoneChange} />
                                 <FormControl variant="standard">
                                     <InputLabel htmlFor="email">Email</InputLabel>
-                                    <Input id="component-simple" onBlur={handleChange} name="email" type="email" aria-describedby="component-error-text" />
+                                    <Input id="component-simple" onChange={handleChange} name="email" type="email" aria-describedby="component-error-text" />
                                 </FormControl>
                                 {!showVerifyEmailError ?
                                     (
@@ -170,7 +187,7 @@ function Cart() {
                             </form>
                         </Grid>
                     </Grid>
-                </>
+                </Container>
             ) :
                 (
                     <>
