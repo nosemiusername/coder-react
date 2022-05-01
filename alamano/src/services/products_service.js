@@ -59,11 +59,9 @@ const createOrder = async (cart, contactInfo) => {
 }
 
 const payOrder = async (orderId) => {
-    console.log('payOrder', orderId);
     const orderRef = doc(db, 'orders', orderId);
     const order = await getDoc(orderRef);
     if (order.exists()) {
-        console.log('order', orderRef);
         await setDoc(orderRef, {
             ...order.data(),
             status: 'paid'

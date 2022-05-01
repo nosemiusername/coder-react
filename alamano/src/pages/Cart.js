@@ -82,7 +82,6 @@ function Cart() {
         } else {
             setDisablebutton(true)
         }
-        console.log(contactInfo)
     }, [contactInfo])
 
     return (

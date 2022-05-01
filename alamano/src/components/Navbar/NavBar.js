@@ -30,7 +30,7 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div className="icons">
-                    <Link to={"/"} onClick={longinHandler} ><i className="fa-regular fa-user"></i></Link>
+                    <Link to={"/login"} onClick={longinHandler} ><i className="fa-regular fa-user"></i></Link>
                     <CartWidget />
                 </div>
             </div>

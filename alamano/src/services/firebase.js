@@ -72,7 +72,9 @@ const registerWithEmailAndPassword = async (name, email, password) => {
     } catch (err) {
         console.error(err);
         alert(err.message);
+        return false;
     }
+    return true;
 };
 
 const logInWithEmailAndPassword = async (email, password) => {

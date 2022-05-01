@@ -16,11 +16,12 @@ const Checkout = () => {
     const { clear } = useContext(CartContext);
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
+    const [formatedCardNumber, setFormatedCardNumber] = useState("");
+    const [formatedExpiry, setFormatedExpiry] = useState("");
     const { order } = useParams();
     const goToPayment = async (e) => {
         e.preventDefault();
         const result = await payOrder(order);
-        console.log(result);
         if (result) {
             localStorage.removeItem("cart");
             clear();
@@ -30,6 +31,27 @@ const Checkout = () => {
     const handleClose = () => {
         navigate('/');
     }
+    const handleChangeCardNumber = (e) => {
+        const value = e.target.value;
+        if (/^[\d+\-+]+$/.test(value)) {
+            if (value.length % 4 === 0) {
+                setFormatedCardNumber(value.replace(/-/g, '').replace(/(.{4})/g, '$1-'));
+            } else {
+                setFormatedCardNumber(value);
+            }
+        }
+    }
+    const handleChangeExpiry = (e) => {
+        const value = e.target.value;
+        if (/^[\d+/+]+$/.test(value)) {
+            if (value.length % 2 === 0) {
+                setFormatedExpiry(value.replace(/\//g, '').replace(/(.{2})/g, '$1/'));
+            } else {
+                setFormatedExpiry(value);
+            }
+        }
+    }
+
 
     useEffect(() => {
 
@@ -41,25 +63,26 @@ const Checkout = () => {
                 Checkout
             </Typography>
             <Typography variant="h6" component="h2" gutterBottom>
-                Order {order}
+                Orden {order}
             </Typography>
             <form onSubmit={goToPayment}>
                 <Box m={2}>
                     <FormControl variant="standard">
                         <InputLabel htmlFor="card">Card Number</InputLabel>
-                        <Input id="card" />
+                        <Input id="card" type="text" onChange={handleChangeCardNumber} value={formatedCardNumber}
+                            inputProps={{ inputMode: 'numeric', maxLength: 19 }} />
                     </FormControl>
                 </Box>
                 <Box m={2}>
                     <FormControl variant="standard">
                         <InputLabel htmlFor="expiry">Expiry</InputLabel>
-                        <Input id="expiry" />
+                        <Input id="expiry" inputProps={{ required: true, maxLength: 5 }} onChange={handleChangeExpiry} value={formatedExpiry} />
                     </FormControl>
                 </Box>
                 <Box m={2}>
                     <FormControl variant="standard">
                         <InputLabel htmlFor="cvc">CVC</InputLabel>
-                        <Input id="cvc" />
+                        <Input id="cvc" inputProps={{ inputMode: 'numeric', maxLength: 3 }} />
                     </FormControl>
                 </Box>
                 <Box m={2}>
