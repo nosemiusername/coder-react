@@ -3,15 +3,12 @@ import { NavLink } from 'react-router-dom';
 import CartWidget from '../CartWidget/CartWidget';
 import { getCategories } from '../../services/products_service';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import UserWidget from '../UserWidget/UserWidget';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const [categories, setCategories] = useState([]);
-    const navigate = useNavigate();
-    const longinHandler = async (e) => {
-        navigate('/login');
-    }
+
 
     useEffect(() => {
         (async () => {
@@ -30,7 +27,7 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div className="icons">
-                    <Link to={"/login"} onClick={longinHandler} ><i className="fa-regular fa-user"></i></Link>
+                    <UserWidget />
                     <CartWidget />
                 </div>
             </div>

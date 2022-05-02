@@ -1,0 +1,10 @@
+a:hover {
+    color: #F43D53;
+    text-transform: uppercase;
+}
+
+a {
+    color: black;
+    text-transform: uppercase;
+    text-decoration: none;
+}

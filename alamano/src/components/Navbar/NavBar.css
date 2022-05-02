@@ -25,6 +25,11 @@
     color: #F43D53;
 }
 
+.icons i:hover {
+    color: #F43D53;
+    cursor: pointer;
+}
+
 .icons a {
     color: #353535;
     text-decoration: none;
