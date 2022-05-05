@@ -1,9 +1,11 @@
-a:hover {
+a:hover,
+span {
     color: #F43D53;
     text-transform: uppercase;
 }
 
-a {
+a,
+span {
     color: black;
     text-transform: uppercase;
     text-decoration: none;

@@ -27,7 +27,6 @@ function Login() {
 
     useEffect(() => {
         user && navigate('/');
-        console.log(user);
     }, [user, loading, error]);
 
 
