@@ -67,7 +67,6 @@ Alamano es la marca de fantasia que cree basado en productos para el hogar que f
   - identación
 - Página de error
 - Control del carro vacío
-
 - Documentación de las funciones
 
 # Tecnologías
