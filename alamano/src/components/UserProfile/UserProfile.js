@@ -8,7 +8,7 @@ import { useContext } from 'react';
 import Box from "@mui/material/Box";
 import { getUserProfile, updateUserProfile } from '../../services/user_service';
 
-function UserProfile(requestedComponent) {
+function UserProfile({ requestedComponent }) {
     const navigate = useNavigate();
     const { cart } = useContext(CartContext);
     const [contactInfo, setContactInfo] = useState({
@@ -26,11 +26,12 @@ function UserProfile(requestedComponent) {
     const [showVerifyEmailError, setShowVerifyEmailError] = useState(false);
     const callToAction = async (e) => {
         e.preventDefault();
-        if (requestedComponent) {
+        if (!requestedComponent) {
             updateUserProfile(contactInfo);
             navigate('/')
         } else {
-            const order = await createOrder(cart, contactInfo);
+            const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+            const order = await createOrder(cart, contactInfo, total);
             navigate(`/checkout/${order}`);
 
         }
@@ -132,7 +133,7 @@ function UserProfile(requestedComponent) {
                 )}
             <Box sx={{ mt: 2 }}>
                 <Button type="submit" variant="contained" color="primary" disabled={disableButton}>
-                    {requestedComponent ? 'Actualizar' : 'Comprar'}
+                    {!requestedComponent ? 'Actualizar' : 'Comprar'}
                 </Button>
             </Box>
         </form>

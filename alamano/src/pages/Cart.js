@@ -86,7 +86,7 @@ function Cart() {
                                 <Typography variant="body1" component="p" gutterBottom>
                                     Por favor indicanos tus datos para continuar con el proceso de pago.</Typography>
                             </Box>
-                            <UserProfile />
+                            <UserProfile requestedComponent="cart" />
                         </Grid>
                     </Grid>
                 </Container>
