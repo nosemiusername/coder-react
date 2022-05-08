@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/nosemiusername/coder-react/static/css/main.3390ad9a.css",
+    "main.js": "/nosemiusername/coder-react/static/js/main.13fa5d9c.js",
+    "index.html": "/nosemiusername/coder-react/index.html",
+    "main.3390ad9a.css.map": "/nosemiusername/coder-react/static/css/main.3390ad9a.css.map",
+    "main.13fa5d9c.js.map": "/nosemiusername/coder-react/static/js/main.13fa5d9c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3390ad9a.css",
+    "static/js/main.13fa5d9c.js"
+  ]
+}
