@@ -21,7 +21,6 @@ function UserWidget() {
         navigate('/login');
     }
     const handleLogout = async (e) => {
-        console.log('logout');
         await auth.signOut();
         navigate('/');
     }

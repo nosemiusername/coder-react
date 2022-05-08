@@ -14,8 +14,6 @@ function Register() {
         email: '',
         password: '',
         confirmPassword: '',
-        given: '',
-        family: '',
     });
     const handleChange = (e) => {
         setRegisterForm({
@@ -26,9 +24,7 @@ function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await registerWithEmailAndPassword(`${registerForm.given} ${registerForm.family}`,
-            registerForm.email, registerForm.password);
-
+        await registerWithEmailAndPassword(registerForm.email, registerForm.password);
     }
 
     useEffect(() => {
@@ -42,18 +38,6 @@ function Register() {
                 Crear Cuenta
             </Typography>
             <form onSubmit={handleSubmit}>
-                <Box m={2}>
-                    <FormControl>
-                        <InputLabel htmlFor="given">Nombre</InputLabel>
-                        <Input id="given" type="text" name="given" onChange={handleChange} />
-                    </FormControl>
-                </Box>
-                <Box m={2}>
-                    <FormControl>
-                        <InputLabel htmlFor="family">Apellido</InputLabel>
-                        <Input id="family" type="text" name="family" onChange={handleChange} />
-                    </FormControl>
-                </Box>
                 <Box m={2}>
                     <FormControl>
                         <InputLabel htmlFor="email">Email</InputLabel>

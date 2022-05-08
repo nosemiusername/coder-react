@@ -9,6 +9,7 @@ import ContactUs from './pages/ContactUs';
 import History from './pages/History'
 import JoinUs from './pages/JoinUs'
 import Cart from './pages/Cart';
+import Orders from './pages/Orders';
 import { CartProvider } from './context/CartContext';
 import Checkout from './pages/Checkout';
 import Login from './pages/Login';
