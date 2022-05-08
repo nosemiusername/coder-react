@@ -7,15 +7,31 @@ import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import CartContext from '../../context/CartContext';
+import { currencyFormat } from '../../helpers/index';
+
 
 const Item = ({ product }) => {
-    const navigate = useNavigate();
+    const [disableCart, setDisableCart] = useState(false);
+    const { addItem, remainingItems, cart } = useContext(CartContext);
 
-    const handleClick = (event) => {
+    const handleClick = async (event) => {
         event.preventDefault();
-        navigate(`/cart`);
+        addItem({ ...product, quantity: 1 });
+
     }
+
+    useEffect(() => {
+
+        async function evaluateStock() {
+            const result = await remainingItems(product.id);
+            if (result === 0) {
+                setDisableCart(true);
+            }
+        }
+        evaluateStock();
+    }, [cart])
 
     return (
 
@@ -33,13 +49,13 @@ const Item = ({ product }) => {
                     {product.title}
                 </Typography>
                 <Typography style={{ fontWeight: 600 }}>
-                    ${product.price}
+                    {currencyFormat(product.price)}
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button onClick={handleClick} size="small" sx={{ color: "#F43D53" }}> <ShoppingCartIcon></ShoppingCartIcon> Agregar al carro</Button>
+                <Button disabled={disableCart} onClick={handleClick} size="small" sx={{ color: "#F43D53" }}> <ShoppingCartIcon></ShoppingCartIcon>Agregar al carrito</Button>
             </CardActions>
-        </Card>
+        </Card >
     );
 }
 

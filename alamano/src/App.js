@@ -9,8 +9,12 @@ import ContactUs from './pages/ContactUs';
 import History from './pages/History'
 import JoinUs from './pages/JoinUs'
 import Cart from './pages/Cart';
+import Orders from './pages/Orders';
 import { CartProvider } from './context/CartContext';
-
+import Checkout from './pages/Checkout';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Profile from './pages/Profile';
 
 function App() {
 
@@ -26,12 +30,13 @@ function App() {
             <Route path="/contactanos" element={<ContactUs />} />
             <Route path="/historia" element={<History />} />
             <Route path="/unete" element={<JoinUs />} />
-            <Route path="/*" element={<NotFound />} />
             <Route path="/cart" element={<Cart />} />
-            {/* <Route path="/checkout" element={<Checkout />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/profile" element={<Profile />} /> */}
+            <Route path="/checkout/:order" element={<Checkout />} />
+            <Route path="/*" element={<NotFound />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/orders" element={<Orders />} />
           </Routes>
         </div>
         <Footer />

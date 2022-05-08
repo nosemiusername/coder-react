@@ -1,5 +1,6 @@
-import { query, where, collection, getDocs, doc, getDoc } from 'firebase/firestore';
-import db from '../firebase';
+import { query, where, collection, getDocs, doc, getDoc, addDoc, setDoc, documentId } from 'firebase/firestore';
+import { db } from './firebase';
+import { auth } from './firebase';
 
 /**
  * If category is undefined get first category
@@ -44,4 +45,54 @@ const getCategories = async () => {
     return categories.docs.length ? categories.docs.map(doc => doc.data()) : [];
 }
 
-export { getItemsByCategory, getCategories, getItemById };
+/**
+ * 
+ * @param {*} order 
+ * @returns order generated 
+ */
+const createOrder = async (cart, contactInfo, total) => {
+    const user = auth.currentUser;
+    const order = await addDoc(collection(db, 'orders'), {
+        cart,
+        contactInfo,
+        status: 'pending',
+        orderDate: new Date().toLocaleString(),
+        uid: user ? user.uid : 'anonymous',
+        total,
+    });
+    return order.id;
+}
+
+/**
+ * 
+ * @returns all orders
+ */
+const getOrders = async () => {
+    const user = auth.currentUser;
+    const ordersRef = collection(db, 'orders');
+    const q = query(ordersRef, where("uid", '==', user.uid));
+    const orders = await getDocs(q);
+    const response = orders.docs.length ? orders.docs.map((doc) => { return { id: doc.id, ...doc.data() } }) : [];
+    // console.log(response);
+    return response;
+}
+
+/**
+ * 
+ * @param {*} orderId 
+ * @returns order created
+ */
+const payOrder = async (orderId) => {
+    const orderRef = doc(db, 'orders', orderId);
+    const order = await getDoc(orderRef);
+    if (order.exists()) {
+        await setDoc(orderRef, {
+            ...order.data(),
+            paymentDate: new Date().toLocaleString(),
+            status: 'paid',
+        });
+    }
+    return order.exists();
+}
+
+export { createOrder, getItemsByCategory, getCategories, getItemById, payOrder, getOrders };

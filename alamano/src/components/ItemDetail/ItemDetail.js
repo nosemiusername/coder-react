@@ -15,6 +15,7 @@ import Button from '@mui/material/Button';
 import CartContext from '../../context/CartContext';
 import CardActions from '@mui/material/CardActions';
 import { useNavigate } from 'react-router-dom';
+import { currencyFormat } from '../../helpers/index';
 
 const ItemDetail = ({ detail }) => {
     const navigate = useNavigate();
@@ -22,6 +23,7 @@ const ItemDetail = ({ detail }) => {
     const [open, setOpen] = useState(false);
     const [showItemCount, setShowItemCount] = useState(true);
     const [count, setCount] = useState(1);
+    const { remainingItems } = useContext(CartContext);
 
     const handleOpen = (e, count) => {
         e.stopPropagation();
@@ -53,7 +55,13 @@ const ItemDetail = ({ detail }) => {
     }
 
     useEffect(() => {
-
+        async function evaluateStock() {
+            const result = await remainingItems(detail.id);
+            if (result === 0) {
+                setShowItemCount(false);
+            }
+        }
+        evaluateStock();
     }, [setOpen])
 
     return (
@@ -95,7 +103,7 @@ const ItemDetail = ({ detail }) => {
                             {detail.description}
                         </Typography>
                         <Typography style={{ fontWeight: 800, color: '#F43D53' }}>
-                            ${detail.price}
+                            {currencyFormat(detail.price)}
                         </Typography>
                     </CardContent>
                     {showItemCountSnippet()}

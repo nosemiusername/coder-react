@@ -1,28 +1,30 @@
 import Container from "@mui/material/Container";
-import { logInWithEmailAndPassword, auth } from './../services/firebase';
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { InputLabel, FormControl, Input, Button } from "@mui/material";
+import { registerWithEmailAndPassword, auth } from '../services/firebase';
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from "react";
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useEffect, useState } from "react";
 
-function Login() {
+function Register() {
     const navigate = useNavigate();
     const [user, loading, error] = useAuthState(auth);
-    const [loginForm, setLoginForm] = useState({
+    const [registerForm, setRegisterForm] = useState({
         email: '',
         password: '',
+        confirmPassword: '',
     });
     const handleChange = (e) => {
-        setLoginForm({
-            ...loginForm,
+        setRegisterForm({
+            ...registerForm,
             [e.target.id]: e.target.value
         });
     }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await logInWithEmailAndPassword(loginForm.email, loginForm.password);
+        await registerWithEmailAndPassword(registerForm.email, registerForm.password);
     }
 
     useEffect(() => {
@@ -30,20 +32,10 @@ function Login() {
     }, [user, loading, error]);
 
 
-    const handleCreateAccount = (e) => {
-        e.preventDefault();
-        navigate('/register');
-    }
-
-    const goBack = (e) => {
-        e.preventDefault();
-        navigate('/');
-    }
-
     return (
         <Container>
             <Typography variant="h4" component="h1" gutterBottom>
-                Ingresar
+                Crear Cuenta
             </Typography>
             <form onSubmit={handleSubmit}>
                 <Box m={2}>
@@ -60,17 +52,13 @@ function Login() {
                 </Box>
                 <Box m={2}>
                     <Button type="submit" variant="contained" color="primary">
-                        Iniciar Sesión
+                        Crear
                     </Button>
                 </Box>
             </form>
-            <Box m={2}>
-                <Button onClick={handleCreateAccount}>Crear Cuenta</Button>
-                /
-                <Button onClick={goBack}>Volver a la tienda</Button>
-            </Box>
         </Container>
     )
+
 }
 
-export default Login;
+export default Register;

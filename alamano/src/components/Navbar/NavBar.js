@@ -3,10 +3,13 @@ import { NavLink } from 'react-router-dom';
 import CartWidget from '../CartWidget/CartWidget';
 import { getCategories } from '../../services/products_service';
 import { useState, useEffect } from 'react';
+import UserWidget from '../UserWidget/UserWidget';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const [categories, setCategories] = useState([]);
+
+
     useEffect(() => {
         (async () => {
             const categories = await getCategories();
@@ -24,7 +27,7 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div className="icons">
-                    <a href="/dec.html"><i className="fa-regular fa-user"></i></a>
+                    <UserWidget />
                     <CartWidget />
                 </div>
             </div>
@@ -39,7 +42,7 @@ const Navbar = () => {
                     </li>
                 )}
             </ul>
-        </nav>
+        </nav >
     );
 }
 
